@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Requerimiento de Órdenes</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .product {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Formulario de Requerimiento de Órdenes</h2>
+<form id="orderForm">
+    <label for="date">Fecha:</label>
+    <input type="date" id="date" required><br><br>
+
+    <label for="requester">Solicitante:</label>
+    <input type="text" id="requester" required><br><br>
+
+    <label for="supplier">Proveedor:</label>
+    <input type="text" id="supplier" required><br><br>
+
+    <label for="ruc">RUC:</label>
+    <input type="text" id="ruc" required><br><br>
+
+    <label for="costCenter">Centro de Costos:</label>
+    <input type="text" id="costCenter" required><br><br>
+
+    <h3>Productos</h3>
+    <div id="productContainer">
+        <div class="product">
+            <label for="productDesc">Descripción:</label>
+            <input type="text" class="productDesc" required>
+            <label for="quantity">Cantidad:</label>
+            <input type="number" class="quantity" required>
+            <label for="unitPrice">Precio Unitario:</label>
+            <input type="number" class="unitPrice" required>
+        </div>
+    </div>
+    <button type="button" id="addProduct">Agregar Otro Producto</button><br><br>
+
+    <button type="submit">Enviar Orden</button>
+</form>
+
+<script>
+    document.getElementById("addProduct").addEventListener("click", function() {
+        const productDiv = document.createElement("div");
+        productDiv.classList.add("product");
+
+        productDiv.innerHTML = `
+            <label for="productDesc">Descripción:</label>
+            <input type="text" class="productDesc" required>
+            <label for="quantity">Cantidad:</label>
+            <input type="number" class="quantity" required>
+            <label for="unitPrice">Precio Unitario:</label>
+            <input type="number" class="unitPrice" required>
+        `;
+
+        document.getElementById("productContainer").appendChild(productDiv);
+    });
+
+    document.getElementById("orderForm").addEventListener("submit", function(event) {
+        event.preventDefault(); // Evita el envío del formulario
+        alert("Orden enviada!"); // Aquí podrías implementar el envío de datos a un servidor
+    });
+</script>
+
+</body>
+</html>
